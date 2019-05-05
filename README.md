@@ -15,7 +15,7 @@ Flagged on 3 or more sources (steer clear of this), 2 sources (not very healthy)
 
 If the page domain is not on the list it will then check the links on the page. If any of those link to a domain on the list it will offer a warning and highlight the links so you can avoid them. Or at least be prepared for when you visit them.
 
-<img src="Screenshot%20linkwarning.png" width="600">
+<img src="Screenshot_linkwarning.png" width="600">
 <img src="Screenshot%20links.png" width="600">
 
 ## Installation
