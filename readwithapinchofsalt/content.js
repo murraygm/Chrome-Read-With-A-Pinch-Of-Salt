@@ -139,7 +139,7 @@ function checklinks(){
 
 	if(hasbadlink){
 		var div=document.createElement("div"); document.body.appendChild(div);
-		div.innerHTML='<span style="padding:0px 0px; font-size:24px; line-height:32px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:2px 0px 10px 0px; background-color:#D00; color:#FFF">Careful. This site is OK, but there a a few links to some suspect sources.<br>Look for the <img style="width:30px" src="'+saltyImage[3]+'" > icon to avoid them</span>';
+		div.innerHTML='<span style="padding:0px 0px; font-size:24px; line-height:32px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:2px 0px 10px 0px; background-color:#FFF; color:#000">Careful. This site is OK, but there are a few links to some suspect sources.<br>Look for the <img style="width:30px" src="'+saltyImage[3]+'" > icon to avoid them</span>';
 		div.style.color="#FFF";
 		div.style.backgroundColor="#000";
 		div.style.position="absolute";
