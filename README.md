@@ -5,11 +5,13 @@
 ## What is does
 First off, it checks the webpage's top level domain to see if it's on the list. If it is, it displays a warning. The warning has 3 levels based on how many sources it appears on.
 
-Flagged on 3 or more sources (steer clear of this), 2 sources (not very healthy) or 1 source (be skeptical):
+Flagged on 3 or more sources (steer clear of this), 2 sources (not very healthy), 1 source (be skeptical) and so not to be completely humourless there's a special for sites flagged as 'satire':
 
-<img src="Screenshot%203sources.png" width="600">
-<img src="Screenshot%202sources.png" width="600">
-<img src="Screenshot%201source.png" width="600">
+<img src="Screenshot_3sources.png" width="600">
+<img src="Screenshot_2sources.png" width="600">
+<img src="Screenshot_1source.png" width="600">
+
+<img src="Screenshot_satire.png" width="600">
 
 
 
