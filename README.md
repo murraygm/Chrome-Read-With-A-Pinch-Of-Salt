@@ -23,3 +23,11 @@ If you want to grab it and try it out from here, you'll need to turn on 'develop
 Eventually this will go up on Chrome-extensions for easy install. But for now:
 
 **[Grab the zip](https://github.com/murraygm/Chrome-Read-With-A-Pinch-Of-Salt/raw/master/readwithapinchofsaltv05.zip)**
+
+## about the data
+The data was pulled from [Unreliable News Sources list](https://docs.google.com/spreadsheets/d/1ck1_FZC-97uDLIlvRJDTrGqBk0FuDe9yHkluROgpGS8/) on 2019/05/02 and turned into JSON - it's in the 'fcnlist.js' file.
+Poynter pulled the article explaining the list and the methodology for what was tagged 'fake' etc, and said this https://www.poynter.org/letter-from-the-editor/2019/letter-from-the-editor/
+However, the list seems pretty good, personally I'd have added foxnews.com to it but hey, that's just me.
+
+I'm planning to add a 'whitelist' option and perhaps an 'add this site' option too.
+
