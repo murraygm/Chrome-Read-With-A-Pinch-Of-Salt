@@ -3,17 +3,20 @@
 // Author: Murray Grigo-McMahon
 // License: Free Public Domian (data used may be under additional restrictions)
 // Project: https://github.com/murraygm/Chrome-Read-With-A-Pinch-Of-Salt
-// version: 0.1 Draft - 2019.05.05
+// version: 0.5 Draft - 2019.05.05
 
 var saltyImage = [chrome.runtime.getURL("/images/highsalt.png"), chrome.runtime.getURL("/images/medsalt.png"), chrome.runtime.getURL("/images/lowsalt.png"), chrome.runtime.getURL("/images/warning.png")]
 
 var messageHeadStyle = '<span style="display:block; margin-top:10px; width:500px; transform: skewY(-10deg);">'
 
-var highSaltMessage=messageHeadStyle + '<span style="padding:0px 0px; font-size:24px; line-height:32px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:2px 0px 10px 0px; background-color:#D00; color:#FFF">WHOA!, <br>you\'re going to need a lot of salt with this one.<br>And that\'s not good for your blood pressure.<br>Best try another news source.'  + '</span></span>';
+var highSaltMessage=messageHeadStyle + '<span style="padding:0px 0px; font-size:24px; line-height:32px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:2px 0px 10px 0px; background-color:#FFF; color:#000">WHOA!, <br>you\'re going to need a tonne of salt with this one.<br>And that\'s not good for your blood pressure.<br>Best try another news source.'  + '</span></span>';
 
-var medSaltMessage=messageHeadStyle + '<span style="padding:0px 0px; font-size:24px; line-height:32px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:2px 0px 10px 0px; background-color:#FFF; color:#D00">YUCK, this one needs some heavy seasoning.<br>Best balance with a couple of healthier sources.' + '</span></span>';
+var medSaltMessage=messageHeadStyle + '<span style="padding:0px 0px; font-size:24px; line-height:32px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:2px 0px 10px 0px; background-color:#FFF; color:#D00">YUCK, this needs some heavy seasoning.<br>Best balance with a couple of healthier sources.' + '</span></span>';
 
 var lowSaltMessage=messageHeadStyle + '<span style="padding:0px 0px; font-size:24px; line-height:32px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:2px 0px 10px 0px; background-color:#FFF; color:#000">Careful, this needs a pinch of salt.<br>Don\'t spend too long and stick to a healthy balance of news sources.' + '</span></span>';
+
+var satireMessage=messageHeadStyle + '<span style="padding:0px 0px; font-size:24px; line-height:32px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:2px 0px 10px 0px; background-color:#FFF; color:#000">😂 LOL, nothing serious in sight.<br>If you\'re looking for real news and not just a laugh, best head somewhere else.' + '</span></span>';
+
 
 var siteFlaggedonload = 0;
 
@@ -34,37 +37,55 @@ window.onload=function(){
 
 			var salt=2;
 
-			
-			if(element.lists>2){
-				
-				div.innerHTML=highSaltMessage; 
-				salt=0;
-				div.style.backgroundColor="#000";
-				var whyMessageStyle='<p style="position:relative; font-size:14px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:50px 0px 10px 0px; color:#fff">';
+			if(element.tags.indexOf("satire") >=0){
+				div.innerHTML=satireMessage; 
+				salt=2;
+				div.style.backgroundColor="#fc0";
+				div.style.color="#000";
 
-			} else if(element.lists==2){
-				div.innerHTML=medSaltMessage; 
-				salt=1;
-				div.style.backgroundColor="#000";
-				var whyMessageStyle='<p style="position:relative; font-size:14px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:50px 0px 10px 0px; color:#fff">';
+				var whyMessageStyle='<p style="position:relative; font-size:14px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:50px 0px 10px 0px; color:#000">';
+
+
 
 			} else {
-				div.innerHTML=lowSaltMessage; 
-				salt=2;
-				div.style.backgroundColor="#000";
-				var whyMessageStyle='<p style="position:relative; font-size:14px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:50px 0px 10px 0px; color:#fff">';
 
+
+				if(element.lists>2){
+					
+					div.innerHTML=highSaltMessage; 
+					salt=0;
+					div.style.backgroundColor="#D00";
+					div.style.color="#FFF";
+
+					var whyMessageStyle='<p style="position:relative; font-size:14px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:50px 0px 10px 0px; color:#fff">';
+
+				} else if(element.lists==2){
+					div.innerHTML=medSaltMessage; 
+					salt=1;
+					div.style.backgroundColor="#000";
+					div.style.color="#000";
+
+					var whyMessageStyle='<p style="position:relative; font-size:14px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:50px 0px 10px 0px; color:#fff">';
+
+				} else {
+					div.innerHTML=lowSaltMessage; 
+					salt=2;
+					div.style.backgroundColor="#000";
+					div.style.color="#000";
+
+					var whyMessageStyle='<p style="position:relative; font-size:14px; font-family: Impact, Charcoal, sans-serif; font-weight:bold; margin:50px 0px 10px 0px; color:#fff">';
+
+				};
 			};
 			
 			var whyMessage = whyMessageStyle+'Because it\'s flagged as:<br><span style="background-color:#FFF; color:#000; font-size:20px; display:inline-block; margin:4px 0px; padding:0px 6px;">'+ element.tags + '</span><br>on ' +element.lists + ' <a style="color:inherit" href="https://docs.google.com/spreadsheets/d/1ck1_FZC-97uDLIlvRJDTrGqBk0FuDe9yHkluROgpGS8/edit?usp=sharing">sources in the Unreliable News Sources list</a></p>';
 			div.innerHTML+= whyMessage;
-			div.innerHTML+='<br><button id="mgmClose" onclick="this.parentElement.style.display=\'none\';" style="font-size:14px; font-family: Impact, Charcoal, sans-serif; color:#000; background-color:#fff; margin:4px;">OK I GET IT</button>';
+			div.innerHTML+='<br><button id="mgmClose" onclick="this.parentElement.style.display=\'none\';" style="font-size:14px; font-family: Impact, Charcoal, sans-serif; color:#000; background-color:#fff; padding:8px; margin:4px;">OK I GET IT</button>';
 			div.style.backgroundImage="url('"+saltyImage[salt]+"')";
 			div.style.backgroundRepeat="no-repeat";
 			div.style.backgroundPosition = "bottom right";
 			div.style.backgroundSize = "contain"
-			div.style.color="#000";
-			div.style.position="absolute";
+						div.style.position="absolute";
 			div.style.left="0px";
 			div.style.top="0px";
 			div.style.width="600px";
@@ -157,7 +178,7 @@ function checklinks(){
 		div.style.backgroundPosition = "bottom right";
 		div.style.backgroundSize = "contain";
 		div.style.boxShadow= "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)";
-		div.innerHTML+='<br><button id="mgmClose" onclick="this.parentElement.style.display=\'none\';" style="font-size:14px; font-family: Impact, Charcoal, sans-serif; color:#000; background-color:#fff; margin:4px;">OK I GET IT</button>';
+		div.innerHTML+='<br><button id="mgmClose" onclick="this.parentElement.style.display=\'none\';" style="font-size:14px; font-family: Impact, Charcoal, sans-serif; color:#000; background-color:#fff; padding:8px; margin:4px;">OK I GET IT</button>';
 	};
 
 }
